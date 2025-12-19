@@ -1,0 +1,34 @@
+{
+  "name": "easy-example-generator",
+  "version": "1.0.0",
+  "description": "一个美观、交互式的Web应用，用于生成给定数学知识点相关的十道简单例题，并输出可直接编译的LaTeX代码",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx http-server -p 8000 -o"
+  },
+  "keywords": [
+    "math",
+    "latex",
+    "generator",
+    "education",
+    "ai",
+    "deepseek",
+    "openai",
+    "claude",
+    "mathematics",
+    "problems",
+    "exercises"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/easy-example-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/easy-example-generator/issues"
+  },
+  "homepage": "https://github.com/yourusername/easy-example-generator#readme"
+}
+

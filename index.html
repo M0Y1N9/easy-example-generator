@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学例题生成器 - Math Problem Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 粒子动画背景 -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <div class="container">
+        <!-- 头部区域 -->
+        <header class="header">
+            <h1 class="title">
+                <span class="icon">📐</span>
+                数学例题生成器
+            </h1>
+            <p class="subtitle">基于AI的智能数学题目生成工具，支持LaTeX输出</p>
+        </header>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- API配置卡片 -->
+            <section class="card config-card">
+                <h2 class="card-title">
+                    <span class="icon">🔧</span>
+                    API配置
+                </h2>
+                
+                <div class="form-group">
+                    <label for="api-provider">AI服务商</label>
+                    <select id="api-provider" class="input-field">
+                        <option value="deepseek">Deepseek</option>
+                        <option value="openai">OpenAI</option>
+                        <option value="anthropic">Anthropic Claude</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="api-key">API密钥</label>
+                    <div class="input-with-button">
+                        <input 
+                            type="password" 
+                            id="api-key" 
+                            class="input-field"
+                            placeholder="请输入您的API密钥（仅存储在本地）"
+                        >
+                        <button id="toggle-key-visibility" class="icon-button" title="显示/隐藏密钥">
+                            👁️
+                        </button>
+                    </div>
+                    <small class="hint">🔒 您的API密钥仅存储在本地浏览器中，不会上传到任何服务器</small>
+                </div>
+
+                <div class="form-group" id="base-url-group" style="display: none;">
+                    <label for="base-url">自定义API地址（可选）</label>
+                    <input 
+                        type="text" 
+                        id="base-url" 
+                        class="input-field"
+                        placeholder="留空使用默认地址"
+                    >
+                </div>
+
+                <button id="save-config" class="button button-primary">
+                    <span class="icon">💾</span>
+                    保存配置
+                </button>
+            </section>
+
+            <!-- 题目生成卡片 -->
+            <section class="card generator-card">
+                <h2 class="card-title">
+                    <span class="icon">✨</span>
+                    生成例题
+                </h2>
+
+                <div class="form-group">
+                    <label for="math-topic">数学知识点</label>
+                    <input 
+                        type="text" 
+                        id="math-topic" 
+                        class="input-field"
+                        placeholder="例如：一元二次方程、三角函数、导数等"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="difficulty-level">难度等级</label>
+                    <select id="difficulty-level" class="input-field">
+                        <option value="simple">简单</option>
+                        <option value="medium">中等</option>
+                        <option value="hard">困难</option>
+                    </select>
+                </div>
+
+                <button id="generate-button" class="button button-primary button-large">
+                    <span class="icon">🚀</span>
+                    生成例题
+                </button>
+
+                <!-- 状态显示区域 -->
+                <div id="status-area" class="status-area" style="display: none;">
+                    <div class="loading-animation">
+                        <div class="spinner"></div>
+                    </div>
+                    <p class="status-text" id="status-text">正在生成例题...</p>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="progress-bar"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结果显示卡片 -->
+            <section class="card result-card" id="result-card" style="display: none;">
+                <h2 class="card-title">
+                    <span class="icon">📄</span>
+                    生成结果
+                </h2>
+
+                <div class="action-buttons">
+                    <button id="copy-button" class="button button-secondary">
+                        <span class="icon">📋</span>
+                        复制LaTeX代码
+                    </button>
+                    <button id="download-button" class="button button-secondary">
+                        <span class="icon">⬇️</span>
+                        下载.tex文件
+                    </button>
+                </div>
+
+                <div class="result-content">
+                    <pre id="latex-output" class="latex-output"></pre>
+                </div>
+            </section>
+
+            <!-- 日志卡片 -->
+            <section class="card log-card">
+                <div class="card-header-with-action">
+                    <h2 class="card-title">
+                        <span class="icon">📊</span>
+                        运行日志
+                    </h2>
+                    <button id="clear-log" class="button button-small">清空日志</button>
+                </div>
+                <div id="log-area" class="log-area">
+                    <p class="log-entry log-info">
+                        <span class="log-time">[启动]</span>
+                        <span class="log-message">系统已就绪</span>
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>
+                Made with ❤️ | 
+                <a href="https://github.com" target="_blank">GitHub</a> | 
+                开源协议：MIT
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
